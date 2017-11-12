@@ -1,0 +1,14 @@
+{
+  "name": "url-shortner",
+  "version": "1.0.0",
+  "description": "A NodeJS, Express, and MongoDB URL Shortening Service",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yash Sharma",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
