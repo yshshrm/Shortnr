@@ -19,8 +19,8 @@ var urlSchema = Schema({
         type: Number,
         index: true
     },
-    longUrl: String,
-    createdAt: Date
+    long_url: String,
+    created_at: Date
 });
 
 urlSchema.pre('save', (next) => {
@@ -31,7 +31,7 @@ urlSchema.pre('save', (next) => {
             return next(error);
         }
         doc._id = counter.seq;
-        doc.createdAt = new Date();
+        doc.created_at = new Date();
         next();
     });
 });
