@@ -17,11 +17,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //serve homepage
 app.get('/', (req, res) => {
+    console.log('Rendering page');
     res.sendFile(path.join(__dirname, 'views/index.html'));
 });
 
 //return shortened url
 app.post('/api/shorten', (req, res) => {
+    console.log('Shorten the URL called');
     var longUrl = req.body.url;
     var shortUrl = '';
 
@@ -48,7 +50,17 @@ app.post('/api/shorten', (req, res) => {
 });
 
 app.get('/:encodedId', (req, res) => {
+    var base58Id = req.params.encodedId;
 
+    var id = base58.decode(base58Id);
+
+    Url.findOne({_id: id}, (err, doc) => {
+        if(doc){
+            res.redirect(doc.long_url);
+        } else {
+            res.redirect(config.webhost);
+        }
+    });
 });
 
 var server = app.listen(3000, () => {
